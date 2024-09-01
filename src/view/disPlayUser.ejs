@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display User </title>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #DDD;
+        }
+        
+        tr:hover {background-color: #D6EEEE;}
+
+        /* nav-bar */
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      
+      li {
+        float: left;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+      
+      .active {
+        background-color: #04AA6D;
+      }
+      .image {
+        
+        border-radius: 50px;
+      }
+      /* button. */
+      .btn-delete {
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 50px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: pink;
+        text-decoration: none;
+      }
+      .btn-edit {
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 50px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: pink;
+        text-decoration: none;
+      }
+      .btn-detail {
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 50px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: pink;
+      }
+      .btn-add {
+        outline: none;
+        border: none;
+        height: 25px;
+        width: 50px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: pink;
+      }
+     
+        </style>
+</head>
+<body>
+  <!-- nav - bar -->
+  <div class="nav-bar">
+    <ul>
+      <li><a  href="/">Home</a></li>
+      <li><a  class="active" href="/get-crud">List User</a></li>
+      <li><a href="#Creat">Contact</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    
+  </div>
+  <!-- List user -->
+    <h1>List User</h1>
+    <table>
+        <tr>
+            <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Address</th>
+          <th>Handle</th>
+        </tr>
+        <tr>
+            <% for(var i=0; i < dataUser.length; i++) { %>
+              
+                <tr>
+                  <td><%= dataUser[i].id %></td>
+                  <td><%= dataUser[i].firstName %></td>
+                  <td><%= dataUser[i].lastName %></td>
+                  <td><%= dataUser[i].email %></td>
+                  <td><%= dataUser[i].phoneNumber %></td>
+                  <td><%= dataUser[i].address %></td>
+                  <td class="handle">
+                    
+                      <form action="/delete-crud" method="POST">
+                         <button   class="btn-delete"> Delete</button>
+                         <input name="id" type="text" hidden value="<%= dataUser[i].id %>"> 
+                      </form>
+                       
+                      
+                
+                      
+                   
+                      <a href="/getEdit-crud?id=<%= dataUser[i].id %>" class="btn-edit">Edit</a>
+                    
+                   
+                      <button class="btn-detail" > Detail</button>
+                
+                  </td>
+                </tr>
+             <% } %>
+             <a  href="/crud" class="btn-add">Add</a>
+        </tr>
+       
+       
+      </table>
+</body>
+</html>
